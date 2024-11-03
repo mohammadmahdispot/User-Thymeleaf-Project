@@ -25,30 +25,30 @@ public class HomeController {
     @GetMapping("/list")
     public String getAllUsers(Model model) {
         model.addAttribute("users", userService.getAllUser());
-        return "list"; // نمایش لیست کاربران
+        return "list";
     }
 
     @GetMapping("/create")
     public String showCreateForm(Model model) {
         model.addAttribute("user", new User());
-        return "create"; // صفحه ایجاد کاربر جدید
+        return "create";
     }
 
     @PostMapping("/create")
     public String createUser(@ModelAttribute("user") User user) {
         userService.create(user);
-        return "redirect:/USER/"; // بازگشت به لیست کاربران
+        return "redirect:/USER/";
     }
 
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
         model.addAttribute("user", userService.getById(id));
-        return "edit"; // صفحه ویرایش کاربر
+        return "edit";
     }
 
     @PostMapping("/edit/{id}")
     public String updateUser(@PathVariable Long id, @ModelAttribute("user") User user) {
-        user.setId(id); // اطمینان از تنظیم آی‌دی کاربر
+        user.setId(id);
         userService.create(user);
         return "redirect:/USER/";
     }
@@ -56,7 +56,7 @@ public class HomeController {
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable Long id) {
         userService.deleteById(id);
-        return "redirect:/USER/"; // بازگشت به لیست کاربران
+        return "redirect:/USER/";
     }
 }
 
